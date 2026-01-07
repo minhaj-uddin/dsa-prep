@@ -10,6 +10,7 @@ This repository is created to systematically learn and practice **Data Structure
 It contains clear implementations, explanations, and problem-solving approaches commonly asked in technical interviews and competitive programming.
 
 The goal is to:
+
 - Strengthen core DSA concepts
 - Improve problem-solving skills
 - Build an interview-ready foundation
@@ -19,6 +20,7 @@ The goal is to:
 ## 🧠 Topics Covered
 
 ### Data Structures
+
 - Arrays
 - Strings
 - Linked Lists
@@ -27,9 +29,10 @@ The goal is to:
 - Trees
 - Heaps / Priority Queues
 - Graphs
-- Tries (if applicable)
+- Tries
 
 ### Algorithms
+
 - Searching & Sorting
 - Recursion & Backtracking
 - Greedy Algorithms
@@ -40,10 +43,9 @@ The goal is to:
 
 ---
 
-
 ## 🛠 Languages Used
 
-- JavaScript 
+- JavaScript
 
 ---
 
@@ -61,5 +63,4 @@ The goal is to:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/dsa-prep.git
-
-
+   ```
