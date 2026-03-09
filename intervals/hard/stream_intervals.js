@@ -109,3 +109,80 @@ class SummaryRanges {
 
   getIntervals = () => this.intervals;
 }
+
+// Disjoint Set Union
+class DSU {
+  constructor() {
+    this.parent = new Map();
+    this.rank = new Map();
+    this.intervals = new Map();
+  }
+
+  exists(x) {
+    return this.parent.has(x);
+  }
+
+  makeSet(x) {
+    this.parent.set(x, x);
+    this.rank.set(x, 0);
+    this.intervals.set(x, [x, x]);
+  }
+
+  find(x) {
+    if (!this.exists(x)) return null;
+
+    if (this.parent.get(x) !== x) {
+      this.parent.set(x, this.find(this.parent.get(x)));
+    }
+
+    return this.parent.get(x);
+  }
+
+  union(x, y) {
+    let xr = this.find(x);
+    let yr = this.find(y);
+
+    if (xr === null || yr === null || xr === yr) return;
+
+    // Union by Rank
+    if (this.rank.get(xr) < this.rank.get(yr)) {
+      [xr, yr] = [yr, xr];
+    }
+
+    this.parent.set(yr, xr);
+
+    if (this.rank.get(xr) === this.rank.get(yr)) {
+      this.rank.set(xr, this.rank.get(xr) + 1);
+    }
+
+    // Merge Intervals
+    const intervalX = this.intervals.get(xr);
+    const intervalY = this.intervals.get(yr);
+
+    this.intervals.set(xr, [
+      Math.min(intervalX[0], intervalY[0]),
+      Math.max(intervalX[1], intervalY[1]),
+    ]);
+
+    this.intervals.delete(yr);
+  }
+}
+
+class SummaryRanges {
+  constructor() {
+    this.dsu = new DSU();
+  }
+
+  addNum(val) {
+    if (this.dsu.exists(val)) return;
+
+    this.dsu.makeSet(val);
+
+    this.dsu.union(val, val - 1);
+    this.dsu.union(val, val + 1);
+  }
+
+  getIntervals() {
+    return Array.from(this.dsu.intervals.values()).sort((a, b) => a[0] - b[0]);
+  }
+}
