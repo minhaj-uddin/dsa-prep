@@ -242,7 +242,7 @@ const minInterval = (intervals, queries) => {
 // Approach 3: Binary Search
 const minInterval = (intervals, queries) => {
   // Sort intervals by length (smallest first)
-  intervals.sort((a, b) => a[1] - a[0] - (b[1] - b[0]));
+  intervals.sort((a, b) => a[1] - a[0] || b[1] - b[0]);
 
   // Sort queries with indices
   const sortedQueries = queries
